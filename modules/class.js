@@ -1,44 +1,57 @@
-export default class Bookcollection {
-    constructor(title, author, bookstore) {
-        this.title = title;
-        this.author = author;
-        this.bookstore = bookstore;
+const bookTitle = document.getElementById('#title');
+const bookAuthor = document.getElementById('#author');
+const form = document.getElementById('#form');
+
+function handleChange() {
+    const formData = {
+        title: bookTitle.value
     }
 }
 
-function existingData() {
-    const booklist = document.querySelector('.book-list')
-    let existingData = JSON.parse(localStorage.getItem('data'))
-    if (existingData == null) existingData = this.bookstore;
+// export default class Bookcollection {
+//     constructor(title, author, bookstore) {
+//         this.title = title;
+//         this.author = author;
+//         this.bookstore = bookstore;
+//     }
+// }
 
-    this.bookstore = this.bookstore.concat(existingData);
+// export function getData() {
+//     const booklist = document.querySelector('.book-list')
+//     let existingData = JSON.parse(localStorage.getItem('data'))
+//     if (existingData == null) existingData = this.bookstore;
 
-    this.bookstore.forEach((item) => {
-        booklist.innerHTML += `
-        <li class="book" id="${item.title}">
-        <p> "${item.title}</p>
-        <p> "${item.author}"</p>
-        <button type="button" class"remove">Remove</button>
-        </li>`
-    })
-}
+//     this.bookstore = this.bookstore.concat(existingData);
 
-function saveData() {
-    const booklist = document.querySelector('.book-list')
-    const form = document.querySelector('#form')
-    form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const { title } = this;
-        const { author } = this;
+//     this.bookstore.forEach((item) => {
+//         booklist.innerHTML += `
+//         <li class="book" id="${item.title}">
+//         <p> "${item.title}</p>
+//         <p> "${item.author}"</p>
+//         <button type="button" class"remove">Remove</button>
+//         </li>`
+//     })
+// }
 
-        const bookDescription = {
-            title: title.value,
-            author: author.value,
-        };
+// export function saveData() {
+//      console.log('form submit listener called now');
+//     const booklist = document.querySelector('.book-list')
+//     const form = document.querySelector('#form')
+//     form.addEventListener('submit', (e) => {
+//         e.preventDefault();
+//         const { title } = bookTitle.value;
+//         const { author } = bookAuthor.value;
 
-        if (title.value.length && author.value.length > 0) {
-            this.bookstore.push(bookDescription)
-            localStorage.setItem('data', JSON.stringify(this.bookstore))
-        }
-    })
-}
+//         const bookDescription = {
+//             title: bookTitle.value,
+//             author: bookAuthor.value,
+//         };
+
+//         if (title.value.length && author.value.length > 0) {
+//             this.bookstore.push(bookDescription)
+//             localStorage.setItem('data', JSON.stringify(this.bookstore))
+//         }
+//     })
+// }
+
+
