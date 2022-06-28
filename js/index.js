@@ -1,8 +1,5 @@
 console.log('Index started');
 
-// import Bookcollection from "../modules/class.js";
-// import { getData, saveData } from "../modules/class.js";
-
 const Books = [];
 
 
@@ -18,12 +15,14 @@ bookAuthor.onchange = function () {
     console.log(bookAuthor.value);
 }
 
-function handleChange() {
-    const formData = {
-        title: bookTitle.value,
-        author: bookAuthor.value,
-    };
+let formData = {
+    title: "",
+    author: "",
+};
 
+function handleChange() {
+    formData.title = bookTitle.value;
+    formData.author =bookAuthor.value;
     localStorage.setItem('form', JSON.stringify(formData));
 }
 
@@ -40,3 +39,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 bookTitle.onkeyup = handleChange;
 bookAuthor.onkeyup = handleChange;
+
+form.addEventListener('submit', ()=> {
+    Books.push(formData);
+
+    console.log(Books);
+});
