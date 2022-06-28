@@ -23,7 +23,7 @@ function callbackFunction(event) {
     list.id = BookList.length-1;
     list.innerHTML = `
     <p class="book-id">${formDataObj.id}</p>
-    <p>${formDataObj['title']}</p>
+    <p id='test'>${formDataObj['title']}</p>
     <p>${formDataObj['author']}</p>
     <button type="button" id="${BookList.length-1}" class="remove">Remove</button>
     <br> <hr />`
@@ -31,15 +31,17 @@ function callbackFunction(event) {
     myFormData.forEach((value, key) => (formDataObj[key] = value));
     console.log(formDataObj);
     console.log(BookList);
+
+    const removeBtn = document.querySelector('.remove');
+    removeBtn.onclick = () => { 
+        BookList.splice(removeBtn.id, 1);
+        console.log(BookList);
+    };
 };
 
-const removeBtn = document.querySelector('.remove')
-removeBtn.addEventListener('click', ()=> {
-    if ()
-})
 
 
-function removeObject(book) {
-    BookList.splice(book.id, 1);
-}
+// function removeObject(book) {
+//     BookList.splice(book.id, 1);
+// }
 
