@@ -18,6 +18,14 @@ form.addEventListener('submit', (e) => {
     console.log(formData);
 });
 
+document.addEventListener('DOMContentLoaded', (e) => {
+  if (localStorage.getItem('form')) {
+    const formObj = JSON.parse(localStorage.getItem('form'));
+    bookTitle.value = formObj.title;
+    bookAuthor.value = formObj.author;
+  }
+});
+
 
 
 
