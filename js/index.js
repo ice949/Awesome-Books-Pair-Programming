@@ -1,11 +1,25 @@
-const Books = [];
-var BookList = [];
-
+var books = [];
 
 const bookTitle = document.getElementById('title');
 const bookAuthor = document.getElementById('author');
+const bookContainer = document.querySelector(".book-list")
 const form = document.getElementById('form');
-const booklist = document.querySelector(".book-list")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 form.addEventListener('submit', callbackFunction);
 function callbackFunction(event) {
@@ -34,13 +48,9 @@ function callbackFunction(event) {
     console.log(BookList);
 
     const removeBtn = document.querySelectorAll('.remove');
-    // removeBtn.onclick = () => {
-    //     BookList.splice(removeBtn.id, 1);
-    //     console.log(BookList);
-    // };
+
     console.log(removeBtn[0].id);
     for (var i = 0; i < removeBtn.length; i++) {
-
         removeBtn[i].addEventListener('click', () => {
             BookList = BookList.splice(removeBtn[i].id, 1);
             console.log(BookList);
