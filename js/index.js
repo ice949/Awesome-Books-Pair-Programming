@@ -3,6 +3,13 @@ const bookAuthor = document.getElementById('author');
 const bookContainer = document.querySelector('.book-list');
 const form = document.getElementById('form');
 
+class AwesomeBooks {
+  constructor(title, author) {
+    this.title = title;
+    this.author = author;
+  }
+}
+
 // booksArray to store array of object
 let books = [];
 
