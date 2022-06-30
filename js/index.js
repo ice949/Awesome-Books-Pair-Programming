@@ -8,7 +8,7 @@ const form = document.getElementById('form');
 
 // Create a js Object to store form data
 const formData = {
-    id: '',
+    // id: '',
     title: '',
     author: '',
 };
@@ -46,17 +46,19 @@ function displayBook(index) {
     const list = document.createElement('div');
     list.classList.add('single-book');
 
-    const id = document.createElement('h3');
-    id.textContent = books[index].id;
-    id.classList.add('book-id');
-    list.appendChild(id);
+    // const id = document.createElement('h3');
+    // id.textContent = books[index].id;
+    // id.classList.add('book-id');
+    // list.appendChild(id);
 
     const title = document.createElement('h3');
     title.textContent = books[index].title;
+    title.classList.add('title');
     list.appendChild(title);
 
     const author = document.createElement('p');
     author.textContent = books[index].author;
+    author.classList.add('author');
     list.appendChild(author);
 
     removeBtn = document.createElement('button');
@@ -68,10 +70,36 @@ function displayBook(index) {
     bookContainer.append(list);
 
     // add event listener to removeBtn
-    removeBtn.addEventListener('click', () => {
-        bookContainer.removeChild(list);
-        books.splice(list.childNodes[0].innerText, 1);
-        console.log(books);
+    list.addEventListener('click', (e) => {
+        // bookContainer.removeChild(list);
+        // books.splice(list.childNodes[0].innerText, 1);
+        removeElementFromUI(e.target);
+        removeElementFromUI(e.target.parentElement.firstChild.textContent);
+        console.log(e.target);
     });
     
+    
+}
+
+function removeElementFromUI(target) {
+    if (target.classList.contains('remove-btn')) {
+        target.parentElement.remove();
+        console.log('element with remove-btn class removed');
+    } else {
+        console.log('does not have classlist of remove-btn');
+    }
+}
+
+function removeFromBooks(title) {
+    let tempBooks = [];
+    if (localStorage.getItem('form')) {
+        tempBooks = JSON.parse(localStorage.getItem('form'));
+    }
+
+    tempBooks.forEach((book, index) => {
+        if (book.title === title) {
+            tempBooks.splice(index, 1);
+            console.log(tempBooks);
+        }
+    });
 }
