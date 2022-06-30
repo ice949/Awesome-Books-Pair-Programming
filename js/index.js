@@ -1,3 +1,4 @@
+/* eslint-disable max-classes-per-file */
 const bookTitle = document.getElementById('title');
 const bookAuthor = document.getElementById('author');
 const bookContainer = document.querySelector('.book-list');
@@ -42,10 +43,11 @@ class LocalStorage {
 class CreateUI {
   getUI(localStorage) {
     this.books = localStorage.getLocalStorage();
-    console.log(this.books);
     let counter = 0;
-    while(this.books)
-    // books.forEach((book) => this.addToUI(book));
+    while (counter < this.books.length) {
+      this.addToUI(this.books[counter]);
+      counter += 1;
+    }
   }
 
   // eslint-disable-next-line class-methods-use-this
@@ -73,8 +75,21 @@ class CreateUI {
     bar.classList.add('bar');
     list.appendChild(bar);
 
+    list.addEventListener('click', (e) => {
+      this.remove(e.target);
+      // eslint-disable-next-line no-use-before-define
+      localS.removeBookFromStorage(e.target.parentElement.firstChild.textContent);
+    });
+
     // adding book to ul
     bookContainer.append(list);
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  remove(t) {
+    if (t.classList.contains('remove-btn')) {
+      t.parentElement.remove();
+    }
   }
 }
 
@@ -89,7 +104,6 @@ form.addEventListener('submit', (e) => {
   e.preventDefault();
   // Add new book to local storage
   localS.setStorage(getVal(bookTitle.value, bookAuthor.value));
-  console.log(localS.getLocalStorage());
 
   // create a new book in DOM
   ui.addToUI(getVal(bookTitle.value, bookAuthor.value));
