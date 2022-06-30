@@ -1,23 +1,29 @@
 var books = [];
 
+let errorMessage = document.getElementById('error-message');
 const bookTitle = document.getElementById('title');
 const bookAuthor = document.getElementById('author');
 const bookContainer = document.querySelector(".book-list")
 const form = document.getElementById('form');
 
+// Create a js Object to store form data
 const formData = {
     title: '',
     author: '',
 };
 
+
+// Event listner for form on submit event
 form.addEventListener('submit', (e) => {
     e.preventDefault
     formData.title = bookTitle.value;
     formData.author = bookAuthor.value;
     localStorage.setItem('form', JSON.stringify(formData));
-    console.log(formData);
+    pushIntoBook(formData);
 });
 
+
+// event listener for doucment on cotent loaded
 document.addEventListener('DOMContentLoaded', (e) => {
   if (localStorage.getItem('form')) {
     const formObj = JSON.parse(localStorage.getItem('form'));
@@ -27,53 +33,18 @@ document.addEventListener('DOMContentLoaded', (e) => {
 });
 
 
+// function to push form data object to book array
+function pushIntoBook(formData) {
+    books.push(formData);
+    console.log(books);
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-// form.addEventListener('submit', callbackFunction);
-// function callbackFunction(event) {
-//     event.preventDefault();
-//     const myFormData = new FormData(event.target);
-
-//     const formDataObj = {
-//         id: BookList.length,
-//         title: bookTitle.value,
-//         author: bookAuthor.value,
-//     };
-//     BookList.push(formDataObj);
-//     let list = document.createElement("li");
-//     list.classList.add('list')
-//     list.id = BookList.length - 1;
-//     list.innerHTML = `
-//     <p class="book-id">${formDataObj.id}</p>
-//     <p id='test'>${formDataObj['title']}</p>
-//     <p>${formDataObj['author']}</p>
-//     <button type="button" id="${BookList.length - 1}" class="remove">Remove</button>
-//     <br> <hr />
-//     `
-//     booklist.appendChild(list)
-//     myFormData.forEach((value, key) => (formDataObj[key] = value));
-//     console.log(formDataObj);
-//     console.log(BookList);
-
-//     const removeBtn = document.querySelectorAll('.remove');
-
-//     console.log(removeBtn[0].id);
-//     for (var i = 0; i < removeBtn.length; i++) {
-//         removeBtn[i].addEventListener('click', () => {
-//             BookList = BookList.splice(removeBtn[i].id, 1);
-//             console.log(BookList);
-//         })
+// Check for empty or null fields
+// function checkEmpty(e) {
+//     let message = [];
+//     if (bookTitle.value === '' || bookAuthor.value === '') {
+//         message.push('Kindly fill in all fields !')
+//         errorMessage.innerText = message.join(', ');
+//         e.preventDefault();
 //     }
-
-// };
+// }
