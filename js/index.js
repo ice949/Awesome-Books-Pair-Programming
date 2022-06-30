@@ -39,7 +39,6 @@ document.addEventListener('DOMContentLoaded', (e) => {
 // function to push form data object to book array
 function pushIntoBook(formData) {
     books.push(formData);
-    console.log(books);
 }
 
 // display data in the browser
@@ -71,5 +70,8 @@ function displayBook(index) {
     // add event listener to removeBtn
     removeBtn.addEventListener('click', () => {
         bookContainer.removeChild(list);
+        books.splice(list.childNodes[0].innerText, 1);
+        console.log(books);
     });
+    
 }
