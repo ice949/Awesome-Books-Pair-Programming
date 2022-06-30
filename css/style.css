@@ -1,0 +1,28 @@
+.remove-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  /* border-bottom: 1px solid black; */
+  margin-bottom: 10px;
+}
+
+li {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+}
+
+button {
+  width: fit-content;
+}
+
+.bar {
+  width: 100%;
+  border: 1px solid black;
+}
+
+.book-id {
+  display: none;
+}
