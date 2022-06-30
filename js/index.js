@@ -84,8 +84,19 @@ form.addEventListener('submit', (e) => {
 });
 
 // event listener for doucment on cotent loaded
-document.addEventListener('DomContentLoaded', () => {
+window.addEventListener('load', () => {
   if (localStorage.getItem('books')) {
     books = JSON.parse(localStorage.getItem('books'));
   }
+  let counter = 0;
+  while (counter < books.length) {
+    displayBook(counter);
+    counter += 1;
+  }
+  if (localStorage.getItem('books') === null) {
+    bookTitle.value = books[books.length - 1].title;
+    bookAuthor.value = books[books.length - 1].title;
+  }
+
+  localStorage.setItem('books', JSON.stringify(books));
 });
