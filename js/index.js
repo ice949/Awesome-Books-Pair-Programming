@@ -11,6 +11,7 @@ class AwesomeBooks {
   }
 }
 
+
 class LocalStorage {
   // eslint-disable-next-line class-methods-use-this
   getLocalStorage() {
