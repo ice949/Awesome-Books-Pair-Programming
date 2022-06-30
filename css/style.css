@@ -1,5 +1,10 @@
-body {
+/* * {
+    list-style-type: none;
+    list-style: none;
+} */
 
+body {
+    
 }
 
 .remove-container {
@@ -14,6 +19,7 @@ li {
     width: 100%;
     display: flex;
     flex-direction: column;
+    list-style-type: none;
 }
 
 button {

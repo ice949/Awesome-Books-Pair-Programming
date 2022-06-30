@@ -20,6 +20,7 @@ form.addEventListener('submit', (e) => {
     formData.author = bookAuthor.value;
     localStorage.setItem('form', JSON.stringify(formData));
     pushIntoBook(formData);
+    displayBook(books.length-1);
 });
 
 
@@ -48,3 +49,26 @@ function pushIntoBook(formData) {
 //         e.preventDefault();
 //     }
 // }
+
+
+// display data in the browser
+  function displayBook(index) {
+  const list = document.createElement('div');
+  list.classList.add('single-book');
+
+  const title = document.createElement('h3');
+  title.textContent = books[index].title;
+  list.appendChild(title);
+  
+  const author = document.createElement('p');
+  author.textContent = books[index].author;
+  list.appendChild(author);
+
+  removeBtn = document.createElement('button');
+  removeBtn.classList.add('remove-btn');
+  removeBtn.textContent = 'Remove';
+  list.appendChild(removeBtn);
+
+  //adding book to ul
+  bookContainer.append(list);
+ }
