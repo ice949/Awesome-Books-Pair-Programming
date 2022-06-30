@@ -1,4 +1,4 @@
-var books = [];
+const books = [];
 
 let errorMessage = document.getElementById('error-message');
 const bookTitle = document.getElementById('title');
@@ -8,6 +8,7 @@ const form = document.getElementById('form');
 
 // Create a js Object to store form data
 const formData = {
+    id: '',
     title: '',
     author: '',
 };
@@ -18,19 +19,20 @@ form.addEventListener('submit', (e) => {
     e.preventDefault
     formData.title = bookTitle.value;
     formData.author = bookAuthor.value;
+    formData.id = books.length;
     localStorage.setItem('form', JSON.stringify(formData));
     pushIntoBook(formData);
-    displayBook(books.length-1);
+    displayBook(books.length - 1);
 });
 
 
 // event listener for doucment on cotent loaded
 document.addEventListener('DOMContentLoaded', (e) => {
-  if (localStorage.getItem('form')) {
-    const formObj = JSON.parse(localStorage.getItem('form'));
-    bookTitle.value = formObj.title;
-    bookAuthor.value = formObj.author;
-  }
+    if (localStorage.getItem('form')) {
+        const formObj = JSON.parse(localStorage.getItem('form'));
+        bookTitle.value = formObj.title;
+        bookAuthor.value = formObj.author;
+    }
 });
 
 
@@ -40,35 +42,34 @@ function pushIntoBook(formData) {
     console.log(books);
 }
 
-// Check for empty or null fields
-// function checkEmpty(e) {
-//     let message = [];
-//     if (bookTitle.value === '' || bookAuthor.value === '') {
-//         message.push('Kindly fill in all fields !')
-//         errorMessage.innerText = message.join(', ');
-//         e.preventDefault();
-//     }
-// }
-
-
 // display data in the browser
-  function displayBook(index) {
-  const list = document.createElement('div');
-  list.classList.add('single-book');
+function displayBook(index) {
+    const list = document.createElement('div');
+    list.classList.add('single-book');
 
-  const title = document.createElement('h3');
-  title.textContent = books[index].title;
-  list.appendChild(title);
-  
-  const author = document.createElement('p');
-  author.textContent = books[index].author;
-  list.appendChild(author);
+    const id = document.createElement('h3');
+    id.textContent = books[index].id;
+    id.classList.add('book-id');
+    list.appendChild(id);
 
-  removeBtn = document.createElement('button');
-  removeBtn.classList.add('remove-btn');
-  removeBtn.textContent = 'Remove';
-  list.appendChild(removeBtn);
+    const title = document.createElement('h3');
+    title.textContent = books[index].title;
+    list.appendChild(title);
 
-  //adding book to ul
-  bookContainer.append(list);
- }
+    const author = document.createElement('p');
+    author.textContent = books[index].author;
+    list.appendChild(author);
+
+    removeBtn = document.createElement('button');
+    removeBtn.classList.add('remove-btn');
+    removeBtn.textContent = 'Remove';
+    list.appendChild(removeBtn);
+
+    //adding book to ul
+    bookContainer.append(list);
+
+    // add event listener to removeBtn
+    removeBtn.addEventListener('click', () => {
+        bookContainer.removeChild(list);
+    });
+}
