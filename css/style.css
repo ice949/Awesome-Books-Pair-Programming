@@ -17,7 +17,6 @@ body {
   width: 100%;
 }
 
-
 #navbar {
   display: flex;
   justify-content: space-between;
@@ -110,6 +109,8 @@ form {
 .input-field input {
   width: 280px;
   height: 35px;
+  border: 2px solid black;
+  padding: 18px;
 }
 
 .btn {
