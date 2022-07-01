@@ -4,10 +4,33 @@
   box-sizing: border-box;
 }
 
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 0 2% 0 2%;
+}
+
+.main {
+  width: 100%;
+}
+
 #navbar {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  align-items: center;
   margin: 30px auto;
+  width: 100%;
+  border: 2px solid #000;
+  padding: 2%;
+}
+
+.navigation {
+  display: flex;
+  gap: 10px;
+  list-style-type: none;
 }
 
 .home-page {
@@ -86,10 +109,42 @@ form {
 .input-field input {
   width: 280px;
   height: 35px;
+  border: 2px solid black;
+  padding: 18px;
 }
 
 .btn {
   width: 100%;
   display: flex;
   justify-content: flex-end;
+}
+
+.none {
+  display: none;
+}
+
+#contact-page {
+  line-height: 30px;
+}
+
+#contact-page h2 {
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+.contact-info {
+  line-height: 25px;
+  padding-left: 50px;
+}
+
+footer {
+  border: 1px solid black;
+  width: 96%;
+  padding: 2%;
+  position: fixed;
+  bottom: 0;
+  margin: 0 2% 15px 2%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
