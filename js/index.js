@@ -5,7 +5,8 @@ const bookContainer = document.querySelector('.book-list');
 const form = document.getElementById('form');
 
 class AwesomeBooks {
-  constructor(title, author) {
+  constructor(title, author, id) {
+    this.id = id;
     this.title = title;
     this.author = author;
   }
@@ -29,13 +30,14 @@ class LocalStorage {
     localStorage.setItem('books', JSON.stringify(books));
   }
 
-  removeBookFromStorage(title) {
+  removeBookFromStorage(id) {
     const books = this.getLocalStorage();
     books.forEach((book, index) => {
-      if (book.title === title) {
+      if (book.id === Number(id)) {
         books.splice(index, 1);
       }
     });
+
     localStorage.setItem('books', JSON.stringify(books));
   }
 }
@@ -58,6 +60,11 @@ class CreateUI {
     const info = document.createElement('div');
     info.classList.add('info');
     list.appendChild(info);
+
+    const bookID = document.createElement('h3');
+    bookID.textContent = book.id;
+    bookID.classList.add('book-id');
+    info.appendChild(bookID);
 
     const title = document.createElement('h3');
     title.textContent = book.title;
@@ -100,17 +107,35 @@ class CreateUI {
 const localS = new LocalStorage();
 const ui = new CreateUI();
 
-function getVal(title, author) {
-  return new AwesomeBooks(title, author);
+function getVal(title, author, id) {
+  return new AwesomeBooks(title, author, id);
+}
+
+// important to hold length of local  storage
+let id = 0;
+
+function getIndexInLocalStorage() {
+  const books = localS.getLocalStorage();
+  // eslint-disable-next-line no-undef
+  return books.length;
 }
 
 form.addEventListener('submit', (e) => {
   e.preventDefault();
+
   // Add new book to local storage
-  localS.setStorage(getVal(bookTitle.value, bookAuthor.value));
+  localS.setStorage(getVal(bookTitle.value, bookAuthor.value, id));
 
   // create a new book in DOM
-  ui.addToUI(getVal(bookTitle.value, bookAuthor.value));
+  ui.addToUI(getVal(bookTitle.value, bookAuthor.value, id));
+
+  id += 1;
 });
 
-window.addEventListener('load', ui.getUI(localS));
+window.addEventListener('load', () => {
+  // get the book list back on DOM
+  ui.getUI(localS);
+
+  // set the id var to current index value before refresh
+  id = 1 + getIndexInLocalStorage();
+});
