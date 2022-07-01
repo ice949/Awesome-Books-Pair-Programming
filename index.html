@@ -11,10 +11,15 @@
     <main class="main">
       <nav id="navbar">
         <h1 id="logo">Awesome Books</h1>
+        <ul class="navigation">
+          <li id="books-page-btn">List</li> <hr>
+          <li id="add-page-btn">Add New</li> <hr>
+          <li id="contact-page-btn">Contact</li>
+        </ul>
       </nav>
       <section class="home-page">
-        <div class="book-list"></div>
-        <div class="add-b">
+        <div class="book-list none" id="books-page"></div>
+        <div class="add-b" id="add-page">
 
           <form action="#" id="form">
               <h2>Add a new book</h2>
@@ -28,7 +33,12 @@
             </div>
           </form>
         </div>
-        <div></div>
+        <div id="contact-page" class="none">
+          <h2>Contact Information</h2>
+        </div>
+        <footer>
+          <p>Copyright ....</p>
+        </footer>
       </section>
     </main>
     <script src="js/index.js"></script>
