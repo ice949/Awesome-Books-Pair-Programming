@@ -11,7 +11,6 @@ class AwesomeBooks {
   }
 }
 
-
 class LocalStorage {
   // eslint-disable-next-line class-methods-use-this
   getLocalStorage() {
@@ -56,15 +55,23 @@ class CreateUI {
     const list = document.createElement('div');
     list.classList.add('single-book');
 
+    const info = document.createElement('div');
+    info.classList.add('info');
+    list.appendChild(info);
+
     const title = document.createElement('h3');
     title.textContent = book.title;
     title.classList.add('title');
-    list.appendChild(title);
+    info.appendChild(title);
+
+    const by = document.createElement('h3');
+    by.textContent = 'by';
+    info.appendChild(by);
 
     const author = document.createElement('h3');
-    author.textContent = book.author;
+    author.textContent = (book.author);
     author.classList.add('author');
-    list.appendChild(author);
+    info.appendChild(author);
 
     const removeBtn = document.createElement('button');
     removeBtn.classList.add('remove-btn');
@@ -72,14 +79,10 @@ class CreateUI {
     removeBtn.setAttribute('type', 'button');
     list.appendChild(removeBtn);
 
-    const bar = document.createElement('hr');
-    bar.classList.add('bar');
-    list.appendChild(bar);
-
     list.addEventListener('click', (e) => {
       this.remove(e.target);
       // eslint-disable-next-line no-use-before-define
-      localS.removeBookFromStorage(e.target.parentElement.firstChild.textContent);
+      localS.removeBookFromStorage(e.target.parentElement.firstChild.firstChild.textContent);
     });
 
     // adding book to ul
