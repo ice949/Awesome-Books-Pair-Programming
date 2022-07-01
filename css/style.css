@@ -1,3 +1,48 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+#navbar {
+  display: flex;
+  justify-content: center;
+  margin: 30px auto;
+}
+
+.home-page {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+.book-list {
+  width: 90%;
+  border: 2px solid #000;
+  display: flex;
+  flex-direction: column;
+  min-height: 40px;
+}
+
+.single-book {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+.single-book:nth-child(odd) {
+  background-color: #dfdbdb;
+}
+
+.info {
+  display: flex;
+  gap: 8px;
+}
+
 .remove-container {
   display: flex;
   flex-direction: column;
@@ -7,15 +52,10 @@
   margin-bottom: 10px;
 }
 
-li {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  list-style-type: none;
-}
-
 button {
   width: fit-content;
+  height: auto;
+  padding: 15px;
 }
 
 .bar {
@@ -25,4 +65,31 @@ button {
 
 .book-id {
   display: none;
+}
+
+.add-b {
+  width: 280px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  width: 100%;
+}
+
+.input-field {
+  width: 100%;
+}
+
+.input-field input {
+  width: 280px;
+  height: 35px;
+}
+
+.btn {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
 }
